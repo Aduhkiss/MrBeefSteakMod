@@ -14,6 +14,7 @@ public class UserManager {
 		accountStore.put("Smajor1995", Rank.YOUTUBER);
 		accountStore.put("Seapeekay", Rank.YOUTUBER);
 		accountStore.put("Sk1er", Rank.YOUTUBER);
+		
 	}
 	
 	public static Rank getRank(String username) {

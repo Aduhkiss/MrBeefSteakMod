@@ -4,6 +4,7 @@ import com.github.mrebhan.ingameaccountswitcher.MR;
 
 import net.angusbeefgaming.backend.UserManager;
 import net.angusbeefgaming.mrbeefsteaksmod.command.GirlfriendCommand;
+import net.angusbeefgaming.mrbeefsteaksmod.command.RankCommand;
 import net.angusbeefgaming.mrbeefsteaksmod.command.ResetCoinsCommand;
 import net.angusbeefgaming.mrbeefsteaksmod.events.Coins;
 import net.angusbeefgaming.mrbeefsteaksmod.events.MainMenuRank;
@@ -69,6 +70,7 @@ public class Main {
 		
 		ClientCommandHandler.instance.registerCommand((ICommand)new GirlfriendCommand());
 		ClientCommandHandler.instance.registerCommand((ICommand)new ResetCoinsCommand());
+		ClientCommandHandler.instance.registerCommand((ICommand) new RankCommand());
 		
 		MR.init();
 		MinecraftForge.EVENT_BUS.register(new ClientEvents());
@@ -81,6 +83,7 @@ public class Main {
 	
 	@EventHandler
 	public static void postInit(FMLPostInitializationEvent e) {
+		System.out.println("Welcome to MrBeefSteaks Mod! Created by Atticus Zambrana (MrBeefSteak)");
 	}
 	
 	
