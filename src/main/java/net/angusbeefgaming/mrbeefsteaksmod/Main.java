@@ -29,7 +29,7 @@ import the_fireplace.ias.config.ConfigValues;
 import the_fireplace.ias.events.ClientEvents;
 import the_fireplace.iasencrypt.Standards;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION)
+@Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, clientSideOnly = true)
 public class Main {
 	// Test
 	@Instance
@@ -84,6 +84,8 @@ public class Main {
 	@EventHandler
 	public static void postInit(FMLPostInitializationEvent e) {
 		System.out.println("Welcome to MrBeefSteaks Mod! Created by Atticus Zambrana (MrBeefSteak)");
+		
+		Main.proxy.postInit();
 	}
 	
 	

@@ -1,5 +1,5 @@
 package net.angusbeefgaming.mrbeefsteaksmod.proxy;
 
-public class CommonProxy {
-
+public abstract class CommonProxy {
+	public abstract void postInit();
 }

@@ -10,10 +10,14 @@ public class UserManager {
 		accountStore.put("MrBeefSteak", Rank.ADMINISTRATOR);
 		accountStore.put("NoobSight", Rank.ADMINISTRATOR);
 		
+		
+		// If Any Content Creators would like the YouTube Tag, please email me at angusbeefsteak14@gmail.com
 		accountStore.put("JackSucksAtMC", Rank.YOUTUBER);
 		accountStore.put("Smajor1995", Rank.YOUTUBER);
 		accountStore.put("Seapeekay", Rank.YOUTUBER);
 		accountStore.put("Sk1er", Rank.YOUTUBER);
+		accountStore.put("Skeppy", Rank.YOUTUBER);
+		accountStore.put("Spifey", Rank.YOUTUBER);
 		
 	}
 	
