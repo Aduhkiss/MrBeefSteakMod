@@ -69,8 +69,12 @@ public class GirlfriendCommand implements ICommand
 	@Override
 	public List<String> getTabCompletions(MinecraftServer server, ICommandSender sender, String[] args,
 			BlockPos targetPos) {
-		// TODO Auto-generated method stub
-		return null;
+		List<String> alieses = new ArrayList<String>();
+		alieses.add("can");
+		alieses.add("you");
+		alieses.add("like");
+		alieses.add("dont?");
+		return alieses;
 	}
 
 	@Override
