@@ -16,15 +16,15 @@ public class UserManager {
 	
 	public static Rank getRank(String username) {
 		if(contains(username, devRanked)) {
-			System.out.println("Client Manager> Already have " + username + " in memory. Returning Developer Rank");
+			//System.out.println("Client Manager> Already have " + username + " in memory. Returning Developer Rank");
 			return Rank.ADMINISTRATOR;
 		}
 		if(contains(username, youtubeRanked)) {
-			System.out.println("Client Manager> Already have " + username + " in memory. Returning YouTuber Rank");
+			//System.out.println("Client Manager> Already have " + username + " in memory. Returning YouTuber Rank");
 			return Rank.YOUTUBER;
 		}
 		if(contains(username, defaultRanked)) {
-			System.out.println("Client Manager> Already have " + username + " in memory. Returning No Rank");
+			//System.out.println("Client Manager> Already have " + username + " in memory. Returning No Rank");
 			return Rank.DEFAULT;
 		}
 		
@@ -32,16 +32,16 @@ public class UserManager {
 		String playerRank = Backend.getData("getRank/" + username);
 		if(playerRank.equals("ADMINISTRATOR")) {
 			devRanked.add(username);
-			System.out.println("Client Manager> Got " + username + "'s Data for the first time. Returning Developer Rank.");
+			//System.out.println("Client Manager> Got " + username + "'s Data for the first time. Returning Developer Rank.");
 			return Rank.ADMINISTRATOR;
 		}
 		if(playerRank.equals("YOUTUBER")) {
-			System.out.println("Client Manager> Got " + username + "'s Data for the first time. Returning YouTuber Rank.");
+			//System.out.println("Client Manager> Got " + username + "'s Data for the first time. Returning YouTuber Rank.");
 			youtubeRanked.add(username);
 			return Rank.YOUTUBER;
 		}
 		defaultRanked.add(username);
-		System.out.println("Client Manager> Got " + username + "'s Data for the first time. Returning No Rank.");
+		//System.out.println("Client Manager> Got " + username + "'s Data for the first time. Returning No Rank.");
 		return Rank.DEFAULT;
 	}
 	
