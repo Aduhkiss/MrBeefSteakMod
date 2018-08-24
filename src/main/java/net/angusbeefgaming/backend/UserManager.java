@@ -14,6 +14,9 @@ public class UserManager {
 	public static List<String> youtubeRanked = new ArrayList<String>();
 	public static List<String> defaultRanked = new ArrayList<String>();
 	
+	public static List<String> whitelisted = new ArrayList<String>();
+	public static List<String> notWhitelisted = new ArrayList<String>();
+	
 	public static Rank getRank(String username) {
 		if(contains(username, devRanked)) {
 			//System.out.println("Client Manager> Already have " + username + " in memory. Returning Developer Rank");
@@ -43,6 +46,27 @@ public class UserManager {
 		defaultRanked.add(username);
 		//System.out.println("Client Manager> Got " + username + "'s Data for the first time. Returning No Rank.");
 		return Rank.DEFAULT;
+	}
+	
+	public static boolean isWhitelisted(String username) {
+		// Check if username is in memory already
+		if(contains(username, whitelisted)) {
+			return true;
+		}
+		if(contains(username, notWhitelisted)) {
+			return false;
+		}
+		
+		String queryResult = Backend.getData("isWhitelisted/" + username);
+		if(queryResult.equals("YES")) {
+			whitelisted.add(username);
+			return true;
+		}
+		if(queryResult.equals("NO")) {
+			notWhitelisted.add(username);
+			return true;
+		}
+		return false;
 	}
 	
 	public static boolean contains(String username, List<String> list) {

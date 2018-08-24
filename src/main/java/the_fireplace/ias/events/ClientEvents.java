@@ -2,6 +2,7 @@ package the_fireplace.ias.events;
 
 import com.github.mrebhan.ingameaccountswitcher.tools.Config;
 
+import net.angusbeefgaming.backend.UserManager;
 import net.angusbeefgaming.mrbeefsteaksmod.Main;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiMainMenu;
