@@ -80,7 +80,7 @@ public class Girlfriend {
     	   return "Hey! Im doing pretty well!";
        }
        if(input.indexOf("heil hitler")>=0) {
-           return "卐";
+           return "å��";
         }
        if(input.indexOf("kys")>=0 || input.indexOf("kill your self")>=0 || input.indexOf("kill ur self")>=0 || input.indexOf("kill yourself")>=0) {
            if(myMood == Mood.DEPRESSED) {
@@ -131,7 +131,7 @@ public class Girlfriend {
                 return "I Really think that I am facing depression. please, help me.";
             }
        }
-       if(input.indexOf("fuck me")>=0 || input.indexOf("wanna fuck")>=0 || input.indexOf("have sex")>=0) {
+       if(input.indexOf("wanna fuck")>=0 || input.indexOf("lets have sex")>=0) {
            if(myMood == Mood.ANGRY || myMood == Mood.ANNOYED) {
                return "With how you have treated me?? Absolutly not!";
             }
