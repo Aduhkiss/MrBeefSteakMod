@@ -53,8 +53,6 @@ public class Main {
 	
 	@EventHandler
 	public static void preInit(FMLPreInitializationEvent e) {
-		// Config Ranks
-		UserManager.setupAccountStore();
 		
 		MinecraftForge.EVENT_BUS.register(PlayerChat.class);
 		MinecraftForge.EVENT_BUS.register(Coins.class);
