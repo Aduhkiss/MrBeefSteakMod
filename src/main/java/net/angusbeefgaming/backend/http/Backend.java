@@ -6,8 +6,12 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import net.minecraft.client.Minecraft;
+
 public class Backend {
 	private static final String USER_AGENT = "Mozilla/5.0";
+	
+	static int tries = 0;
 	
 	
 	/**
@@ -26,7 +30,9 @@ public class Backend {
 			responseCode = con.getResponseCode();
 		}
 		catch(IOException e) {
-			System.out.println("Anti Crash> I just prevented a crash from occuring.");
+			System.out.println("MrBeefSteaks Mod> An Error has occured, and your game has to close.");
+			e.printStackTrace();
+			Minecraft.getMinecraft().shutdown();
 		}
 		BufferedReader in = new BufferedReader(
 		        new InputStreamReader(con.getInputStream()));
@@ -40,11 +46,17 @@ public class Backend {
 	}
 	
 	public static String getData(String param) {
+		if(tries == 5) {
+			System.out.println("MrBeefSteak >> There was an error while contacting the official MrBeefSteak Server. Out of Attempts.");
+			return "DEAFULT";
+		}
 		try {
 			return get("https://savory-kiss.glitch.me/" + param);
 		} catch (Exception e) {
-			System.out.println("MrBeefSteak >> There was an error while contacting the official MrBeefSteak Server.");
-			return "DEFAULT";
+			System.out.println("MrBeefSteak >> There was an error while contacting the official MrBeefSteak Server. Attempting again...");
+			tries++;
+			getData(param);
 		}
+		return null;
 	}
 }

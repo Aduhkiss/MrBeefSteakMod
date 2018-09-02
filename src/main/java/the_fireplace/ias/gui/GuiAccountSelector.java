@@ -309,7 +309,6 @@ public class GuiAccountSelector extends GuiScreen {
   }
 
   private ArrayList<ExtendedAccountData> convertData() {
-    @SuppressWarnings("unchecked")
 	ArrayList<AccountData> tmp = (ArrayList<AccountData>) AltDatabase.getInstance().getAlts().clone();
     ArrayList<ExtendedAccountData> converted = new ArrayList<>();
     int index = 0;

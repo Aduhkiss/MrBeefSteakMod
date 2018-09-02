@@ -2,10 +2,13 @@ package net.angusbeefgaming.mrbeefsteaksmod;
 
 import com.github.mrebhan.ingameaccountswitcher.MR;
 
+import net.angusbeefgaming.backend.Rank;
 import net.angusbeefgaming.backend.UserManager;
+import net.angusbeefgaming.backend.http.VPN;
 import net.angusbeefgaming.mrbeefsteaksmod.command.GirlfriendCommand;
 import net.angusbeefgaming.mrbeefsteaksmod.command.RankCommand;
 import net.angusbeefgaming.mrbeefsteaksmod.command.ResetCoinsCommand;
+import net.angusbeefgaming.mrbeefsteaksmod.command.ResetListsCommand;
 import net.angusbeefgaming.mrbeefsteaksmod.events.Coins;
 import net.angusbeefgaming.mrbeefsteaksmod.events.MainMenuRank;
 import net.angusbeefgaming.mrbeefsteaksmod.events.NameTags;
@@ -13,6 +16,7 @@ import net.angusbeefgaming.mrbeefsteaksmod.events.PlayerChat;
 import net.angusbeefgaming.mrbeefsteaksmod.girlfriend.Girlfriend;
 import net.angusbeefgaming.mrbeefsteaksmod.proxy.CommonProxy;
 import net.angusbeefgaming.mrbeefsteaksmod.util.ServerUtil;
+import net.minecraft.client.Minecraft;
 import net.minecraft.command.ICommand;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
@@ -51,13 +55,26 @@ public class Main {
 			config.save();
 	}
 	
+	public static Main getInstance() {
+		return instance;
+	}
+	
 	@EventHandler
 	public static void preInit(FMLPreInitializationEvent e) {
+		
+		// This might work... (It did work)
+		Rank wakeUpPacket = UserManager.getRank("SomeRandomPerson");
 		
 		MinecraftForge.EVENT_BUS.register(PlayerChat.class);
 		MinecraftForge.EVENT_BUS.register(Coins.class);
 		MinecraftForge.EVENT_BUS.register(ServerUtil.class);
 		
+		
+		// Load the AntiCheat Portion
+		//MinecraftForge.EVENT_BUS.register(new LivingAttackHandler());
+		
+		// VPN Stuff
+		VPN.getResultInfo();
 	}
 	
 	@EventHandler
@@ -69,6 +86,7 @@ public class Main {
 		ClientCommandHandler.instance.registerCommand((ICommand)new GirlfriendCommand());
 		ClientCommandHandler.instance.registerCommand((ICommand)new ResetCoinsCommand());
 		ClientCommandHandler.instance.registerCommand((ICommand) new RankCommand());
+		ClientCommandHandler.instance.registerCommand((ICommand) new ResetListsCommand());
 		
 		MR.init();
 		MinecraftForge.EVENT_BUS.register(new ClientEvents());
@@ -76,7 +94,18 @@ public class Main {
 		MinecraftForge.EVENT_BUS.register(new MainMenuRank());
 		MinecraftForge.EVENT_BUS.register(new NameTags());
 		
+		
 		Standards.importAccounts();
+		
+		// VPN Blocker
+		
+		if(VPN.vpnCheck()) {
+			System.out.println("YOUR GAME WAS CLOSED FOR THE REASON: VPN USAGE IS NOT ALLOWED.");
+			Minecraft.getMinecraft().shutdown();
+		}
+		else {
+			System.out.println("NO VPN FOUND! YOUR GOOD TO GO!");
+		}
 	}
 	
 	@EventHandler
@@ -89,5 +118,9 @@ public class Main {
 	
 	public static Girlfriend getGirlfriend() {
 		return gf;
+	}
+	
+	public static String getMyVersion() {
+		return Reference.VERSION;
 	}
 }

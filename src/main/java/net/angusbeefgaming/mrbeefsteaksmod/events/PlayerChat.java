@@ -7,8 +7,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class PlayerChat {
 	@SubscribeEvent
 	public static void onChat(ServerChatEvent e) {
-		EntityPlayerMP player = e.getPlayer();
-		
 		
 	}
 }

@@ -12,7 +12,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 
-public class RankCommand implements ICommand
+public class ResetListsCommand implements ICommand
 {
 
 	@Override
@@ -24,40 +24,28 @@ public class RankCommand implements ICommand
 	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
-		return "rank";
+		return "resetlists";
 	}
 
 	@Override
 	public String getUsage(ICommandSender sender) {
 		// TODO Auto-generated method stub
-		return "/rank <Player>";
+		return "/resetlists";
 	}
 
 	@Override
 	public List<String> getAliases() {
 		List<String> alieses = new ArrayList<String>();
-		alieses.add("rank");
+		alieses.add("resetlists");
 		return alieses;
 	}
 
 	@Override
 	public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
-		String invokerName = sender.getName();
-		Rank invokerRank = UserManager.getRank(invokerName);
-		
-		if((invokerRank != Rank.YOUTUBER) || (invokerRank != Rank.ADMINISTRATOR)) {
-			sender.sendMessage(new TextComponentString("\2479Permissions> \2477This requires Permission Rank [\2479YOUTUBER\2477]"));
-			return;
-		}
-		else {
-			if(args.length < 1) {
-				sender.sendMessage(new TextComponentString("Please enter a player name."));
-				return;
-			}
-			
-			sender.sendMessage(new TextComponentString(args[0] + " is a " + UserManager.getRank(args[0])));
-			return;
-		}
+		UserManager.devRanked.clear();
+		UserManager.youtubeRanked.clear();
+		UserManager.defaultRanked.clear();
+		sender.sendMessage(new TextComponentString("All Lists have been reset!"));
 	}
 
 	@Override

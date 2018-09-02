@@ -14,6 +14,7 @@ public class Coins {
     @SubscribeEvent
     public static void xd(ClientChatReceivedEvent event) {
     	if(!(ServerUtil.getServer() == Server.HYPIXEL)) return;
+    	
         String message = event.getMessage().getUnformattedText();
         //message is the message which the client receives.
         if(message.startsWith("+") && message.contains("coins") && !message.endsWith("for being generous")) {
