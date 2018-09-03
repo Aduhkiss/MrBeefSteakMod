@@ -6,6 +6,8 @@ import net.angusbeefgaming.backend.game.SystemUtil;
 
 public class VPN {
 	
+	public static int overflow = 0;
+	
 	public static String checkerResult = "NONE";
 	
 	public static final boolean PAID_API = false;
@@ -23,12 +25,17 @@ public class VPN {
 	}
 	
 	public static boolean getBoolValue(String value) {
+		if(overflow >= 10) {
+			System.out.println("Unable to lookup. Overflow Maxed!");
+			return false;
+		}
 		JSONObject object = null;
 		
 		try {
 			object = new JSONObject(checkerResult);
 		}
 		catch(Exception e) {
+			overflow++;
 			getBoolValue(value);
 		}
 		
