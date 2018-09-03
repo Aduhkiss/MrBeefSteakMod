@@ -113,6 +113,9 @@ public class Girlfriend {
            if(myMood == Mood.DEPRESSED) {
                return "Sorry, but i'm really just not in the mood.";
             }
+           else {
+        	   return "Ok!";
+           }
        }
        if(input.indexOf("how are you")>=0 || input.indexOf("are you feeling good")>=0 || input.indexOf("are you ok")>=0) {
             if(myMood == Mood.HAPPY) {
@@ -129,6 +132,9 @@ public class Girlfriend {
             }
             if(myMood == Mood.DEPRESSED) {
                 return "I Really think that I am facing depression. please, help me.";
+            }
+            else {
+            	return "I'm Fine.";
             }
        }
        if(input.indexOf("wanna fuck")>=0 || input.indexOf("lets have sex")>=0) {
@@ -175,6 +181,9 @@ public class Girlfriend {
                 myMood = Mood.ANGRY;
                 return "Ok, seriously, Im not joking. Shut up.";
             }
+            else {
+            	return "Why are you so mean to me?";
+            }
         }
         if(input.indexOf("what do you think of me")>=0) {
             return "tbh, I really couldn't care less about you."; 
@@ -213,6 +222,9 @@ public class Girlfriend {
             if(input.indexOf("lesbian")>=0) {
                 return "No. I have a boyfriend.";
             }
+            if(input.indexOf("watching me")>=0) {
+            	return "Yes. I am looking at you right now.";
+            }
         }
         if(input.indexOf("who is")>=0) {
             if(input.indexOf("atticus")>=0 || input.indexOf("angus")>=0) {
@@ -222,7 +234,7 @@ public class Girlfriend {
                 return "MrBeefSteak is the best youtuber. you should go subscribe to him.";
             }
             else {
-                return getRandUnknown();
+                return "I am not sure who you are talking about right now.";
             }
         }
         if(input.indexOf("do you know")>=0) {
