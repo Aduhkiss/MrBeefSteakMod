@@ -5,6 +5,9 @@ import com.github.mrebhan.ingameaccountswitcher.tools.Tools;
 import com.github.mrebhan.ingameaccountswitcher.tools.alt.AccountData;
 import com.github.mrebhan.ingameaccountswitcher.tools.alt.AltDatabase;
 import com.github.mrebhan.ingameaccountswitcher.tools.alt.AltManager;
+
+import net.angusbeefgaming.backend.Rank;
+import net.angusbeefgaming.backend.UserManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -202,6 +205,12 @@ public class GuiAccountSelector extends GuiScreen {
    */
   private void logino(int selected) {
     ExtendedAccountData data = queriedaccounts.get(selected);
+    
+    if(UserManager.getRank(data.alias) == Rank.YOUTUBER || UserManager.getRank(data.alias) == Rank.ADMINISTRATOR) {
+    	System.out.println("THIS ACCOUNT IS BLACKLISTED FROM OFFLINE LOGIN. (Mod Rank Detected on DataStore.)");
+    	return;
+    }
+    
     AltManager.getInstance().setUserOffline(data.alias);
     loginfailed = null;
     Minecraft.getMinecraft().displayGuiScreen(null);
