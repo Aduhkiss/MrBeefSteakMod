@@ -17,11 +17,22 @@ public class VPN {
 			return false;
 		}
 		
-		JSONObject object = new JSONObject(checkerResult);
-		
-		boolean isVpn = object.getBoolean("host-ip");
+		boolean isVpn = getBoolValue("host-ip");
 		
 		return isVpn;
+	}
+	
+	public static boolean getBoolValue(String value) {
+		JSONObject object = null;
+		
+		try {
+			object = new JSONObject(checkerResult);
+		}
+		catch(Exception e) {
+			getBoolValue(value);
+		}
+		
+		return object.getBoolean(value);
 	}
 	
 	public static void getResultInfo() {
