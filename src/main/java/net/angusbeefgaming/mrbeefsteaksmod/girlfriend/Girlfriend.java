@@ -267,6 +267,25 @@ public class Girlfriend {
             	return "Because he makes quality content that you should watch.";
             }
         }
+        if(input.indexOf("i am")>=0) {
+            if(input.indexOf("good")>=0) {
+            	return "Thats good to hear!";
+            }
+            if(input.indexOf("bad")>=0) {
+            	return "Oh, well Im sorry to hear that.";
+            }
+            if(input.indexOf("feeling")>=0) {
+                if(input.indexOf("happy")>=0) {
+                	return "Thats good!";
+                }
+                if(input.indexOf("sad")>=0) {
+                	return "I hope that you feel better soon.";
+                }
+                if(input.indexOf("depressed")>=0) {
+                	return "If this gets any worse, call 1-800-273-8255 for help. (Suicide Prevention)";
+                }
+            }
+        }
         if(input.indexOf("should i")>=0) {
             if(input.indexOf("kill myself")>=0) {
                 if(myMood == Mood.ANGRY) { 
@@ -302,6 +321,5 @@ public class Girlfriend {
        else {
             return getRandUnknown();
        }
-       //return "I have nothing to say for that.";
     }
 }
