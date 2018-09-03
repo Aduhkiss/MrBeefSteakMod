@@ -36,16 +36,16 @@ public class UserManager {
 		
 		if(playerRank.equals("ADMINISTRATOR")) {
 			devRanked.add(username);
-			System.out.println("Client Manager> Got " + username + "'s Data for the first time. Returning Developer Rank.");
+			//System.out.println("Client Manager> Got " + username + "'s Data for the first time. Returning Developer Rank.");
 			return Rank.ADMINISTRATOR;
 		}
 		if(playerRank.equals("YOUTUBER")) {
-			System.out.println("Client Manager> Got " + username + "'s Data for the first time. Returning YouTuber Rank.");
+			//System.out.println("Client Manager> Got " + username + "'s Data for the first time. Returning YouTuber Rank.");
 			youtubeRanked.add(username);
 			return Rank.YOUTUBER;
 		}
 		defaultRanked.add(username);
-		System.out.println("Client Manager> Got " + username + "'s Data for the first time. Returning No Rank.");
+		//System.out.println("Client Manager> Got " + username + "'s Data for the first time. Returning No Rank.");
 		return Rank.DEFAULT;
 	}
 	
