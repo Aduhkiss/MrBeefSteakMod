@@ -45,17 +45,17 @@ public class RankCommand implements ICommand
 		String invokerName = sender.getName();
 		Rank invokerRank = UserManager.getRank(invokerName);
 		
-		if((invokerRank != Rank.YOUTUBER) || (invokerRank != Rank.ADMINISTRATOR)) {
-			sender.sendMessage(new TextComponentString("\2479Permissions> \2477This requires Permission Rank [\2479YOUTUBER\2477]"));
-			return;
-		}
-		else {
+		if(invokerRank == Rank.YOUTUBER || invokerRank == Rank.ADMINISTRATOR) {
 			if(args.length < 1) {
 				sender.sendMessage(new TextComponentString("Please enter a player name."));
 				return;
 			}
 			
 			sender.sendMessage(new TextComponentString(args[0] + " is a " + UserManager.getRank(args[0])));
+			return;
+		}
+		else {
+			sender.sendMessage(new TextComponentString("\2479Permissions> \2477This requires Permission Rank [\2479YOUTUBER\2477]"));
 			return;
 		}
 	}
