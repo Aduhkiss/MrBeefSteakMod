@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class NameTags {
     @SubscribeEvent
-    public void getName(PlayerEvent.NameFormat event) {
+    public static void getName(PlayerEvent.NameFormat event) {
     	Rank playerRank = UserManager.getRank(event.getDisplayname());
     	if(playerRank == Rank.YOUTUBER) {
     		event.setDisplayname("\247c\247lYOUTUBER \247f" + event.getDisplayname());

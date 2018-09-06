@@ -92,7 +92,8 @@ public class Main {
 		MinecraftForge.EVENT_BUS.register(new ClientEvents());
 		
 		MinecraftForge.EVENT_BUS.register(new MainMenuRank());
-		MinecraftForge.EVENT_BUS.register(new NameTags());
+		
+		MinecraftForge.EVENT_BUS.register(NameTags.cla);
 		
 		
 		Standards.importAccounts();
