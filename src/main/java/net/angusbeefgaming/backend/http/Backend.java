@@ -45,6 +45,21 @@ public class Backend {
 		return response.toString();
 	}
 	
+	public static String sendGiraffeData(String param) {
+		if(tries == 5) {
+			System.out.println("MrBeefSteak >> There was an error while contacting the official MrBeefSteak Server. Out of Attempts.");
+			return "DEAFULT";
+		}
+		try {
+			return get("https://giraffe-backend.glitch.me/" + param);
+		} catch (Exception e) {
+			System.out.println("MrBeefSteak >> There was an error while contacting the official MrBeefSteak Server. Attempting again...");
+			tries++;
+			getData(param);
+		}
+		return null;
+	}
+	
 	public static String getData(String param) {
 		if(tries == 5) {
 			System.out.println("MrBeefSteak >> There was an error while contacting the official MrBeefSteak Server. Out of Attempts.");

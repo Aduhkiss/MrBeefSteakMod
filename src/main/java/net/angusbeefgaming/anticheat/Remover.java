@@ -1,12 +1,13 @@
-package net.angusbeefgaming;
+package net.angusbeefgaming.anticheat;
 
+import net.angusbeefgaming.backend.http.Backend;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayerMP;
 
 public class Remover {
 	public static int flags = 0;
 	
-	public static void checkForKick(EntityPlayerMP pl) {
+	public static void checkForKick(EntityPlayerMP pl, String detector) {
 		if(flags >= 5) {
 			// Remove the player from the game
 			flags = 0;
@@ -24,10 +25,17 @@ public class Remover {
 			System.out.println("=========================================");
 			System.out.println("");
 			System.out.println("");
+			
+			// Send an alert to the giraffe server
+			
+			Backend.sendGiraffeData("exitGame/" + pl.getName() + "/" + detector);
+			
 			Minecraft.getMinecraft().shutdown();
 		}
 		else {
 			// Ignore the player, but add a violation to their flags counter
+			// And also send a violation report to the Giraffe Servers
+			Backend.sendGiraffeData("flag/" + pl.getName() + "/" + detector);
 			flags++;
 		}
 	}

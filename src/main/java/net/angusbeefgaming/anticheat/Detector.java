@@ -1,6 +1,5 @@
 package net.angusbeefgaming.anticheat;
 
-import net.angusbeefgaming.Remover;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 
@@ -20,7 +19,7 @@ public abstract class Detector {
 	
 	public void flag(EntityPlayer pl) {
 		try {
-			Remover.checkForKick((EntityPlayerMP) pl);
+			Remover.checkForKick((EntityPlayerMP) pl, detectorName);
 		}
 		catch(ClassCastException e) {
 			System.out.println("GIRAFFE > Report recieved was found within a Single Player Server. Ignoring...");
