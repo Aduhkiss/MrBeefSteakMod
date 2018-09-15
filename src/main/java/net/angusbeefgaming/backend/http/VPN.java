@@ -19,7 +19,15 @@ public class VPN {
 			return false;
 		}
 		
-		boolean isVpn = getBoolValue("host-ip");
+		boolean isVpn;
+		
+		try {
+			isVpn = getBoolValue("host-ip");
+		}
+		catch(Exception e) {
+			isVpn = false;
+			System.out.println("VPN System: Not able to check if your on a vpn...");
+		}
 		
 		return isVpn;
 	}

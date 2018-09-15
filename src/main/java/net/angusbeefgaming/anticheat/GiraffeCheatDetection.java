@@ -15,6 +15,7 @@ public class GiraffeCheatDetection {
 	
 	private void registerChecks() {
 		MinecraftForge.EVENT_BUS.register(new Reach());
+		MinecraftForge.EVENT_BUS.register(new AutoClicker());
 	}
 	
 	public boolean isActive() { 
