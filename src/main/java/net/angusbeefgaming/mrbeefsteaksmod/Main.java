@@ -2,6 +2,7 @@ package net.angusbeefgaming.mrbeefsteaksmod;
 
 import com.github.mrebhan.ingameaccountswitcher.MR;
 
+import net.angusbeefgaming.anticheat.GiraffeCheatDetection;
 import net.angusbeefgaming.backend.Rank;
 import net.angusbeefgaming.backend.UserManager;
 import net.angusbeefgaming.backend.http.VPN;
@@ -13,6 +14,7 @@ import net.angusbeefgaming.mrbeefsteaksmod.events.Coins;
 import net.angusbeefgaming.mrbeefsteaksmod.events.MainMenuRank;
 import net.angusbeefgaming.mrbeefsteaksmod.events.NameTags;
 import net.angusbeefgaming.mrbeefsteaksmod.events.PlayerChat;
+import net.angusbeefgaming.mrbeefsteaksmod.events.ReachDisplay;
 import net.angusbeefgaming.mrbeefsteaksmod.girlfriend.Girlfriend;
 import net.angusbeefgaming.mrbeefsteaksmod.proxy.CommonProxy;
 import net.angusbeefgaming.mrbeefsteaksmod.util.ServerUtil;
@@ -40,6 +42,9 @@ public class Main {
 	public static Main instance;
 	
 	public static Girlfriend gf;
+	
+	// AntiCheat
+	private static GiraffeCheatDetection anticheat;
 	
 	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.COMMON_PROXY_CLASS)
 	public static CommonProxy proxy;
@@ -69,10 +74,6 @@ public class Main {
 		MinecraftForge.EVENT_BUS.register(Coins.class);
 		MinecraftForge.EVENT_BUS.register(ServerUtil.class);
 		
-		
-		// Load the AntiCheat Portion
-		//MinecraftForge.EVENT_BUS.register(new LivingAttackHandler());
-		
 		// VPN Stuff
 		VPN.getResultInfo();
 	}
@@ -90,13 +91,18 @@ public class Main {
 		
 		MR.init();
 		MinecraftForge.EVENT_BUS.register(new ClientEvents());
-		
 		MinecraftForge.EVENT_BUS.register(new MainMenuRank());
-		
-		MinecraftForge.EVENT_BUS.register(NameTags.cla);
-		
+		MinecraftForge.EVENT_BUS.register(NameTags.class);
+		MinecraftForge.EVENT_BUS.register(ReachDisplay.class);
 		
 		Standards.importAccounts();
+	}
+	
+	@EventHandler
+	public static void postInit(FMLPostInitializationEvent e) {
+		System.out.println("Welcome to MrBeefSteaks Mod! Created by Atticus Zambrana (MrBeefSteak)");
+		
+		Main.proxy.postInit();
 		
 		// VPN Blocker
 		
@@ -107,18 +113,20 @@ public class Main {
 		else {
 			System.out.println("NO VPN FOUND! YOUR GOOD TO GO!");
 		}
-	}
-	
-	@EventHandler
-	public static void postInit(FMLPostInitializationEvent e) {
-		System.out.println("Welcome to MrBeefSteaks Mod! Created by Atticus Zambrana (MrBeefSteak)");
 		
-		Main.proxy.postInit();
+		// Start the AntiCheat System
+		anticheat = new GiraffeCheatDetection();
+		
 	}
 	
 	
 	public static Girlfriend getGirlfriend() {
 		return gf;
+	}
+	
+	// Getter for the AntiCheat
+	public static GiraffeCheatDetection getAntiCheat() {
+		return anticheat;
 	}
 	
 	public static String getMyVersion() {
