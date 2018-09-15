@@ -1,9 +1,11 @@
 package net.angusbeefgaming.anticheat.checks;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import net.angusbeefgaming.anticheat.Detector;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -15,6 +17,8 @@ public class AutoClicker extends Detector {
 
 	public AutoClicker() {
 		super("AutoClicker", "Atticus Zambrana");
+		clicks = new ArrayList<Long>();
+		this.hasClickedThisTick = false;
 	}
 	
     @SubscribeEvent
@@ -35,7 +39,12 @@ public class AutoClicker extends Detector {
     @SubscribeEvent
     public void onClientTick(final TickEvent.ClientTickEvent event) {
         this.hasClickedThisTick = false;
-        System.out.println("DEBUG: " + getClicks());
+        // Should we check for any unusual cps's here?
+        int cps = getClicks();
+        if(cps >= 12) {//12
+        	flag(Minecraft.getMinecraft().world.getPlayerEntityByName(Minecraft.getMinecraft().getSession().getUsername()));
+        	report("You are clicking too fast!");
+        }
     }
 	
     public static void addClick() {
@@ -51,5 +60,4 @@ public class AutoClicker extends Detector {
         }
         return clicks.size();
     }
-	
 }

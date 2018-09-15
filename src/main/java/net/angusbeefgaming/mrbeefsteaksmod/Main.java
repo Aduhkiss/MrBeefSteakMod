@@ -1,5 +1,7 @@
 package net.angusbeefgaming.mrbeefsteaksmod;
 
+import java.util.List;
+
 import com.github.mrebhan.ingameaccountswitcher.MR;
 
 import net.angusbeefgaming.anticheat.GiraffeCheatDetection;
@@ -10,6 +12,7 @@ import net.angusbeefgaming.mrbeefsteaksmod.command.GirlfriendCommand;
 import net.angusbeefgaming.mrbeefsteaksmod.command.RankCommand;
 import net.angusbeefgaming.mrbeefsteaksmod.command.ResetCoinsCommand;
 import net.angusbeefgaming.mrbeefsteaksmod.command.ResetListsCommand;
+import net.angusbeefgaming.mrbeefsteaksmod.events.CPSRenderer;
 import net.angusbeefgaming.mrbeefsteaksmod.events.Coins;
 import net.angusbeefgaming.mrbeefsteaksmod.events.MainMenuRank;
 import net.angusbeefgaming.mrbeefsteaksmod.events.NameTags;
@@ -42,6 +45,12 @@ public class Main {
 	public static Main instance;
 	
 	public static Girlfriend gf;
+	
+	// Click Stuff
+    private static List<Long> clicks;
+    public static int cpsCounterPosX;
+    public static int cpsCounterPosY;
+    public static boolean preventDoubleclicks;
 	
 	// AntiCheat
 	private static GiraffeCheatDetection anticheat;
@@ -94,6 +103,7 @@ public class Main {
 		MinecraftForge.EVENT_BUS.register(new MainMenuRank());
 		MinecraftForge.EVENT_BUS.register(NameTags.class);
 		MinecraftForge.EVENT_BUS.register(ReachDisplay.class);
+		MinecraftForge.EVENT_BUS.register(new CPSRenderer());
 		
 		Standards.importAccounts();
 	}
