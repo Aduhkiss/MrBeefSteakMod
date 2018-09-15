@@ -37,7 +37,6 @@ public class Remover {
 			// Ignore the player, but add a violation to their flags counter
 			// And also send a violation report to the Giraffe Servers
 			Backend.sendGiraffeData("flag/" + pl.getName() + "/" + detector);
-			System.out.println("DEBUG MESSAGE HERE");
 			flags++;
 		}
 	}

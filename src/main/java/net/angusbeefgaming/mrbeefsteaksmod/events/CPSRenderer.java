@@ -19,7 +19,7 @@ public class CPSRenderer {
             return;
         }
         final int cps = AutoClicker.getClicks();
-        final String text = cps + " CPS";
+        final String text = cps + " Clicks";
         final boolean blendEnabled = GL11.glIsEnabled(3042);
         GL11.glDisable(3042);
         //Gui.drawRect(0, 20, 0 + Minecraft.getMinecraft().fontRenderer.getStringWidth(text) + 4, 20 + 12, 1140850688);
