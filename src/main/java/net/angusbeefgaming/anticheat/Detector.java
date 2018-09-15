@@ -19,7 +19,13 @@ public abstract class Detector {
 	 */
 	
 	public void flag(EntityPlayer pl) {
-		Remover.checkForKick((EntityPlayerMP) pl);
+		try {
+			Remover.checkForKick((EntityPlayerMP) pl);
+		}
+		catch(ClassCastException e) {
+			System.out.println("GIRAFFE > Report recieved was found within a Single Player Server. Ignoring...");
+			return;
+		}
 	}
 	
 	public void report(String message) {
