@@ -85,6 +85,16 @@ public class Main {
 		
 		// VPN Stuff
 		VPN.getResultInfo();
+		
+		// VPN Blocker First Check (Wake up the API for my next check)
+		
+		if(VPN.vpnCheck()) {
+			System.out.println("YOUR GAME WAS CLOSED FOR THE REASON: VPN USAGE IS NOT ALLOWED.");
+			Minecraft.getMinecraft().shutdown();
+		}
+		else {
+			System.out.println("NO VPN FOUND! YOUR GOOD TO GO!");
+		}
 	}
 	
 	@EventHandler
@@ -114,7 +124,10 @@ public class Main {
 		
 		Main.proxy.postInit();
 		
-		// VPN Blocker
+		// VPN Stuff
+		VPN.getResultInfo();
+		
+		// VPN Blocker Final Check
 		
 		if(VPN.vpnCheck()) {
 			System.out.println("YOUR GAME WAS CLOSED FOR THE REASON: VPN USAGE IS NOT ALLOWED.");
